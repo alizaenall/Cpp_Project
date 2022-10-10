@@ -1,0 +1,372 @@
+#include <iostream>
+#include <math.h>
+#include <string>
+#include <vector>
+#include <ctype.h>
+using namespace std;
+//Prototype
+int penjumlahan();
+int pengurangan();
+
+
+int main()
+{
+
+    string inputString;
+    //Mendapatkan input dari user
+    cout << "Input math problem: ";
+    int index = 0;
+    int flag=1;
+    getline(cin, inputString);
+
+    int inputSize = inputString.size();
+    cout << "Input size: " << inputSize << endl;
+    char inputArray[inputSize];
+    int generalIteration = 0;
+    int iterationSize = inputSize;
+    //Menghilangkan Whitespace dari Array
+    for(int i = 0; i <iterationSize; i++){
+        if (inputString[i] == ' '){
+            inputSize--;
+            cout << "Have you been here?" << endl;
+
+        }
+        else{
+            inputArray[generalIteration] = inputString[i];
+
+            cout << "So yo're here all along time?" << endl;
+            cout << "YES: " << inputArray[generalIteration] << endl;
+            generalIteration ++;
+        }
+    }
+    cout << "Input size 2: " << inputSize << endl;
+    cout << "Input array actual size: " << sizeof(inputArray) << endl;
+    for(int i = 0; i <inputSize; i++){
+        cout << inputArray[i];
+    }
+    cout << endl;
+
+
+    //Identifikasi angka dan operator
+    //indetifikasi ada ( dan ) atau tidak
+    //Iteration to find tanda kurung
+//    for (int i = 0; i < inputSize; i++){
+//        if (inputArray[i] == '+'){
+//            input
+//            penjumlahan();
+//        }
+//        else if (inputArray[i] == '-'){
+//            pengurangan();
+//        }
+//        else if(inputArray)
+//    }
+
+    //Menemukan '+' dan '-'
+
+
+    int arraySize = inputSize;
+
+    generalIteration = 0;
+
+
+    int temp = 0;
+    int kumulasi;
+    int jumlahOperatorPlus = 0;
+    int jumlahOperatorMinus = 0;
+    int jumlahOperatorKali = 0;
+    int jumlahOperatorBagi = 0;
+
+
+
+    for (int i = 0; i < arraySize; i++){
+        int result;
+        int resultKaliBagi;
+        int calcKiri = 0;
+        int calcKanan = 0;
+        int firstCacl;
+        cout << "START" << endl;
+
+        if(inputArray[i] == '*'){
+            jumlahOperatorKali ++;
+            //Jika sebelum operator ialah angka
+            int flag = 1;
+            while(flag == 1){
+                cout << "i di sini pada index ke: " << i << endl;
+                cout << "General iteration: " << generalIteration << endl;
+                if (isdigit(inputArray[i-1-generalIteration])){
+                    cout << "LU MASUK SINI GAK " << generalIteration<< endl;
+                    //convert char to decimal. 48 merupakan decimal angka 0
+                    int angka = inputArray[i-1-generalIteration] - '0';
+                    cout <<" \n" << angka << endl;
+                    temp = angka*pow(10, generalIteration);
+                    cout <<" \n" << temp << endl;
+                    inputArray[i-1-generalIteration] = ' ';
+                    generalIteration++;
+
+                    calcKiri +=  temp;
+                    cout << "\nThe angka (Temp): " << temp << calcKiri<< endl;
+
+                }
+
+                else{
+//                    result = calcKiri + calcKanan;
+                    cout << "8888888888888888888888888" << endl;
+                    cout << "\nCalcKiri: " << calcKiri << endl;
+                    firstCacl = calcKiri;
+
+                    flag = 0;
+                }
+            }
+            cout << "BATAS BATAS BATAS BATAS SUCI" << endl;
+//            int flag2 = 2;
+            generalIteration = 0;
+            temp =0 ;
+
+            while(flag == 0){
+                cout << "i di sini pada index ke: " << i << endl;
+                cout << "General iteration: " << generalIteration << endl;
+                if(isdigit(inputArray[i+1+generalIteration])){
+                    //convert char to decimal
+                    int angka = inputArray[i+1+generalIteration] - '0';
+
+                    temp = temp*10 + angka;
+                    cout << "temp: "<< temp << endl;
+                    cout << "temp: "<< temp << endl;
+                     inputArray[i+1+generalIteration] = ' ';
+                    generalIteration ++;
+                    calcKanan =temp;
+                    cout << calcKanan << endl;
+
+                cout <<"\n==============================================="<< endl;
+//                flag2 = 0;
+
+                }
+
+                else{
+//                    result = calcKiri + calcKanan;
+                    cout << "\nCalcKanan: " << calcKanan << endl;
+                    flag = 2;
+                    cout << "\nHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH" << endl;
+                }
+            }
+            cout << "\n UPdate array: ";
+            for(int i = 0; i <inputSize; i++){
+        cout << inputArray[i];
+    }
+    cout << endl;
+            if (jumlahOperatorKali > 1){
+                resultKaliBagi *= calcKanan;
+
+            }
+            else{
+                resultKaliBagi = calcKiri * calcKanan;
+            }
+            result = resultKaliBagi;
+        cout << "Result Kali = " << result << endl;
+        inputArray[i] = ' ';
+    }
+
+
+
+
+        else if(inputArray[i] == '+'){
+            jumlahOperatorPlus ++;
+            //Jika sebelum operator ialah angka
+            int flag = 1;
+            while(flag == 1){
+                cout << "i di sini pada index ke: " << i << endl;
+                cout << "General iteration: " << generalIteration << endl;
+                if (isdigit(inputArray[i-1-generalIteration])){
+                    cout << "LU MASUK SINI GAK " << generalIteration<< endl;
+                    //convert char to decimal. 48 merupakan decimal angka 0
+                    int angka = inputArray[i-1-generalIteration] - '0';
+                    cout <<" \n" << angka << endl;
+                    temp = angka*pow(10, generalIteration);
+                    cout <<" \n" << temp << endl;
+                    inputArray[i-1-generalIteration] = ' ';
+                    generalIteration++;
+
+                    calcKiri +=  temp;
+                    cout << "\nThe angka (Temp): " << temp << calcKiri<< endl;
+
+                }
+
+                else{
+//                    result = calcKiri + calcKanan;
+                    cout << "8888888888888888888888888" << endl;
+                    cout << "\nCalcKiri: " << calcKiri << endl;
+                    firstCacl = calcKiri;
+
+                    flag = 0;
+                }
+            }
+            cout << "BATAS BATAS BATAS BATAS SUCI" << endl;
+//            int flag2 = 2;
+            generalIteration = 0;
+            temp =0 ;
+
+            while(flag == 0){
+                cout << "i di sini pada index ke: " << i << endl;
+                cout << "General iteration: " << generalIteration << endl;
+                if(isdigit(inputArray[i+1+generalIteration])){
+                    //convert char to decimal
+                    int angka = inputArray[i+1+generalIteration] - '0';
+
+                    temp = temp*10 + angka;
+                    cout << "temp: "<< temp << endl;
+                    cout << "temp: "<< temp << endl;
+                     inputArray[i+1+generalIteration] = ' ';
+                    generalIteration ++;
+                    calcKanan =temp;
+                    cout << calcKanan << endl;
+
+                cout <<"\n==============================================="<< endl;
+//                flag2 = 0;
+
+                }
+
+                else{
+//                    result = calcKiri + calcKanan;
+                    cout << "\nCalcKanan: " << calcKanan << endl;
+                    flag = 2;
+                    cout << "\nHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH" << endl;
+                }
+            }
+            cout << "\n UPdate array: ";
+            for(int i = 0; i <inputSize; i++){
+            cout << inputArray[i];
+            }
+            cout << endl;
+            flag = 1;
+            if (jumlahOperatorKali != 0 && flag ==1){
+                result = result + calcKanan;
+                flag = 0;
+            }
+            else if (jumlahOperatorPlus > 1){
+                result += calcKanan - calcKiri;
+            }
+            else{
+                result = calcKiri + calcKanan;
+            }
+            cout << "Result = " << result << endl;
+        inputArray[i] = ' ';
+        //update array with menghapus operasi sebelumnya dan menambahkan resultnya
+
+//        for(int i = 0; i <arraySize; i++){
+//        if (inputString[i] == ' '){
+//            inputSize--;
+//            cout << "Have you been here?" << endl;
+//
+//        }
+//        else{
+//            inputArray[generalIteration] = inputString[i];
+//
+//            cout << "So yo're here all along time?" << endl;
+//            cout << "YES: " << inputArray[generalIteration] << endl;
+//            generalIteration ++;
+//        }
+//    }
+
+
+        }
+        else if(inputArray[i] == '-'){
+            jumlahOperatorMinus ++;
+            //Jika sebelum operator ialah angka
+            int flag = 1;
+            while(flag == 1){
+                cout << "i di sini pada index ke: " << i << endl;
+                cout << "General iteration: " << generalIteration << endl;
+                if (isdigit(inputArray[i-1-generalIteration])){
+                    cout << "LU MASUK SINI GAK " << generalIteration<< endl;
+                    //convert char to decimal. 48 merupakan decimal angka 0
+                    int angka = inputArray[i-1-generalIteration] - '0';
+                    cout <<" \n" << angka << endl;
+                    temp = angka*pow(10, generalIteration);
+                    cout <<" \n" << temp << endl;
+                    inputArray[i-1-generalIteration] = ' ';
+                    generalIteration++;
+
+                    calcKiri +=  temp;
+                    cout << "\nThe angka (Temp): " << temp << calcKiri<< endl;
+
+                }
+
+                else{
+//                    result = calcKiri + calcKanan;
+                    cout << "8888888888888888888888888" << endl;
+                    cout << "\nCalcKiri: " << calcKiri << endl;
+                    firstCacl = calcKiri;
+
+                    flag = 0;
+                }
+            }
+            cout << "BATAS BATAS BATAS BATAS SUCI" << endl;
+//            int flag2 = 2;
+            generalIteration = 0;
+            temp =0 ;
+
+            while(flag == 0){
+                cout << "i di sini pada index ke: " << i << endl;
+                cout << "General iteration: " << generalIteration << endl;
+                if(isdigit(inputArray[i+1+generalIteration])){
+                    //convert char to decimal
+                    int angka = inputArray[i+1+generalIteration] - '0';
+
+                    temp = temp*10 + angka;
+                    cout << "temp: "<< temp << endl;
+                    cout << "temp: "<< temp << endl;
+                     inputArray[i+1+generalIteration] = ' ';
+                    generalIteration ++;
+                    calcKanan =temp;
+                    cout << calcKanan << endl;
+
+                cout <<"\n==============================================="<< endl;
+//                flag2 = 0;
+
+                }
+
+                else{
+//                    result = calcKiri + calcKanan;
+                    cout << "\nCalcKanan: " << calcKanan << endl;
+                    flag = 2;
+                    cout << "\nHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH" << endl;
+                }
+            }
+            cout << "\n UPdate array: ";
+            for(int i = 0; i <inputSize; i++){
+        cout << inputArray[i];
+    }
+    cout << endl;
+            if (jumlahOperatorMinus > 1){
+                result -= calcKanan;
+            }
+            else if(jumlahOperatorPlus != 0){
+                result = result - calcKanan;
+            }
+            else{
+                result = calcKiri - calcKanan;
+            }
+        cout << "Result MINUS = " << result << endl;
+        inputArray[i] = ' ';
+    }
+    }
+
+
+
+     cout << "UPdate array: ";
+
+    for(int i = 0; i <inputSize; i++){
+        cout << inputArray[i];
+    }
+    cout << "PPP";
+    cout << inputArray[1];
+    cout << endl;
+
+
+
+
+
+
+
+    return 0;
+}
