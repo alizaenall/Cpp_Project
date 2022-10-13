@@ -1,0 +1,73 @@
+#include <iostream>
+#include <string>
+#include <math.h>
+
+using namespace std;
+
+int main()
+{
+    //Mendapatkan input dari user dalam type data string
+    string inputString;
+    getline(cin, inputString);
+    cout << inputString << endl;
+    //Mencari operator
+    cout << "For loop; String Size: " << inputString.size() << endl;
+    int flag = 1;            //unutk masuk/keluar kondisi kiri dan kanan
+    int flagKiri = 1;        //untuk masuk / keluar kondisi kiri
+    int flagKanan = 1;       //untuk masuk / keluar kondisi kanan
+
+    int kiri = 0;
+    int kanan = 0;
+    int angka =  0;
+    for(int i = 0;i <inputString.size(); i++){
+        int j = 1;          //untuk iterasi seluruh array string
+        int k = 1;          //untuk perhitungan satuan, puluhan, ratusan
+        //Operasi *
+        if (inputString[i] == '*'){
+            while(flag == 1){
+                if (isdigit(inputString[i-j]) && flagKiri == 1){
+//                    kiri(inputString[i-j]);
+                    //ubah char ke integer
+                    cout << "KIRI: " << endl;
+                    angka  = inputString.at(i-j) - '0';
+                    int temp = angka*pow(10,k-1);
+                    cout << "eksponen: " << k-1 << "  POW " << pow(10,k-1) << endl;
+                    cout << "Angka KIRI: " << angka<< endl;
+                    kiri += temp;
+                    cout << "KIRI AKHIR LOOP: " << kiri << endl;
+
+                    if (i-j == 0 || inputString [i-j] == ' '){
+                        cout << "KIRI:  " << kiri  << "  INDEX i-j-1: " << i-j-1<< endl;
+                        cout << "\nEND KIRI dengna indek i-j: " << i - j << endl;
+                        flagKiri = 0;
+                    }
+                }
+                if (isdigit(inputString[i+j]) && flagKanan == 1){
+                    cout << "KANANANANANNANNAN "<< "i: " << i << " j: " << j <<  "  i+j: " << i + j << endl;
+                    angka = inputString.at(i+j) - '0';
+                    cout << inputString[i+j] << "    " << angka << endl;
+                    kanan = kanan*10 + angka;
+                    if (i+j+1 == inputString.size() || inputString [i+j+1] == ' '){
+                        cout << "KANAN: " << kanan << endl;
+                        cout << "\nEND KANAN" << endl;
+                        flagKanan = 0;
+                    }
+                }
+                if(flagKiri == 0 && flagKanan == 0){
+                    flag = 0;
+                }
+                if (isdigit(inputString[i-j])){
+                    k++;
+                }
+                j++;
+            }
+            cout << "KIRI: " << kiri << endl;
+
+        }
+    }
+    cout << "KIRI:::::: " << kiri << endl;
+    cout << kanan * kiri << endl;
+
+
+    return 0;
+}
